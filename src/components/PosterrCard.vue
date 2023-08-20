@@ -9,7 +9,7 @@
       <span v-else class="text-xs text-gray-600">{{ repostedLabel }}</span>
     </div>
     <div>
-      <div class="h-80 overflow-hidden relative">
+      <div v-if="post.image" class="h-80 overflow-hidden relative">
         <img :src="post.image" alt="image" class="rounded-md w-full h-80 object-cover">
       </div>
       <p class="mt-4 text-gray-800 leading-5 text-sm">{{ post.text }}</p>
