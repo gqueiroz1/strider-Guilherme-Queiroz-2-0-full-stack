@@ -4,11 +4,11 @@
       <textarea name="post" v-model="postText" id="post" cols="30" rows="10" placeholder="Write a new Post" class="border w-full rounded-md p-4 resize-none outline-purple" maxlength="777" />
       <span class="absolute right-2 bottom-2 text-[10px]" :class="charsLengthClass">{{ textareaCount }}/{{ charsLimit }}</span>
     </div>
-    <span class="mt-2 text-xs sm:hidden inline-block" :class="remainingPostsTextClasses">{{ remainingPostsText }}</span>
+    <span class="mt-2 text-xs sm:hidden inline-block" :class="remainingPostsLabelClasses">{{ remainingPostsLabel }}</span>
     <div class="flex justify-between items-center mt-3">
       <PosterrButton v-if="isAbleToPost" label="Add image"/>
       <div class="flex items-center">
-        <span class="text-xs hidden sm:inline-block" :class="remainingPostsTextClasses">{{ remainingPostsText }}</span>
+        <span class="text-xs hidden sm:inline-block" :class="remainingPostsLabelClasses">{{ remainingPostsLabel }}</span>
         <div v-if="isAbleToPost" class="flex items-center">
           <PosterrButton label="Reset" flat text-color="gray-500" class="mr-2" @click="erasePost"/>
           <PosterrButton label="Post" @click="createPost"/> 
@@ -41,7 +41,7 @@
 
   const charsLengthClass = computed(() => textareaCount.value == charsLimit ? 'text-red-500' : 'text-gray-500')
 
-  const remainingPostsText = computed(() => {
+  const remainingPostsLabel = computed(() => {
     if (isAbleToPost.value) {
       return `You have ${props.dailyPostsCount} post${props.dailyPostsCount > 1 ? 's' : ''} left! :)`
     } else {
@@ -49,7 +49,7 @@
     } 
   })
 
-  const remainingPostsTextClasses = computed(() => isAbleToPost.value ? 'text-gray-500 mr-5' : 'text-red-500')
+  const remainingPostsLabelClasses = computed(() => isAbleToPost.value ? 'text-gray-500 mr-5' : 'text-red-500')
 
   const isAbleToPost = computed(() => props.dailyPostsCount > 0)
 

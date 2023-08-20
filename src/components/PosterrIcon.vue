@@ -34,10 +34,6 @@
       type: String,
       default: 'purple'
     }
-    // iconOptions: {
-    //   type: Object,
-    //   default: () => ({})
-    // }
   })
 
   // icon attributes

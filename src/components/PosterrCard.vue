@@ -3,10 +3,10 @@
     <div class="flex justify-between items-center mb-3">
       <div>
         <span class="font-semibold text-sm">{{ post.creator }}</span>
-        <span class="ml-4 text-xs text-gray-400">08/16/2023</span>
+        <span class="ml-4 text-xs text-gray-400">{{ post.createdAt }}</span>
       </div>
       <PosterrButton v-if="!isRepost" label="Repost"/>
-      <span v-else class="text-xs text-gray-600">{{ repostedMessage }}</span>
+      <span v-else class="text-xs text-gray-600">{{ repostedLabel }}</span>
     </div>
     <div>
       <div class="h-80 overflow-hidden relative">
@@ -30,5 +30,5 @@
 
   const isRepost = computed(() => !!props.post.repostedFrom)
 
-  const repostedMessage = computed(() => `Reposted from ${props.post.repostedFrom}`)
+  const repostedLabel = computed(() => `Reposted from ${props.post.repostedFrom}`)
 </script>

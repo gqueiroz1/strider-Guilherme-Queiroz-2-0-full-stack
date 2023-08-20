@@ -26,14 +26,16 @@
       image: 'https://dfstudio-d420.kxcdn.com/wordpress/wp-content/uploads/2019/06/digital_camera_photo-1080x675.jpg',
       creator: 'gqueiroz1',
       repostedFrom: 'jkm777',
-      reposts: 0
+      reposts: 0,
+      createdAt: '08/16/2023'
     },
     {
       id: 2,
       text: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore dolor totam eligendi recusandae ullam libero dolorum natus quasi praesentium dolore porro quos officiis fugit, accusamus soluta perferendis aperiam esse consequuntur.',
       image: 'https://dfstudio-d420.kxcdn.com/wordpress/wp-content/uploads/2019/06/digital_camera_photo-1080x675.jpg',
       creator: 'mark3',
-      reposts: 0
+      reposts: 0,
+      createdAt: '08/16/2023'
     },
     {
       id: 3,
@@ -41,32 +43,33 @@
       image: 'https://dfstudio-d420.kxcdn.com/wordpress/wp-content/uploads/2019/06/digital_camera_photo-1080x675.jpg',
       creator: 'mark3',
       repostedFrom: 'jkm777',
-      reposts: 0
+      reposts: 0,
+      createdAt: '08/16/2023'
     },
     {
       id: 4,
       text: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore dolor totam eligendi recusandae ullam libero dolorum natus quasi praesentium dolore porro quos officiis fugit, accusamus soluta perferendis aperiam esse consequuntur.',
       image: 'https://dfstudio-d420.kxcdn.com/wordpress/wp-content/uploads/2019/06/digital_camera_photo-1080x675.jpg',
       creator: 'gqueiroz1',
-      reposts: 0
+      reposts: 0,
+      createdAt: '08/16/2023'
     },
     {
       id: 5,
       text: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore dolor totam eligendi recusandae ullam libero dolorum natus quasi praesentium dolore porro quos officiis fugit, accusamus soluta perferendis aperiam esse consequuntur.',
       image: 'https://dfstudio-d420.kxcdn.com/wordpress/wp-content/uploads/2019/06/digital_camera_photo-1080x675.jpg',
       creator: 'jkm777',
-      reposts: 2
+      reposts: 2,
+      createdAt: '08/16/2023'
     }
   ])
 
   function createPost ({ postText, postImage }) {
-    console.log('createPost', postText, postImage)
     posts.value.push({
       id: 10,
       text: postText,
       image: postImage
     })
-    console.log(posts.value)
   }
 </script>
 
