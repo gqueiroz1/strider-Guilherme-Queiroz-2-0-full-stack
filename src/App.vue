@@ -1,7 +1,7 @@
 <template>
   <PosterrHeader ref="posterrHeader"/>
 
-  <div class="max-w-5xl m-auto" :style="contentSpacing">
+  <div class="max-w-5xl m-auto px-4 pb-20" :style="contentSpacing">
     <RouterView />
   </div>
 </template>

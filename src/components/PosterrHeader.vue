@@ -1,7 +1,7 @@
 <template>
-  <header ref="posterrHeader" class="posterr-header fixed w-full flex justify-between items-center py-4 px-10 shadow-sm shadow-purple-light bg-purple">
-    <h1 class="posterr-header__logo text-4xl font-extrabold text-white cursor-pointer" @click="goToFeed">Posterr</h1>
-    <span class="text-white">Hi, gqueiroz1</span>
+  <header ref="posterrHeader" class="posterr-header fixed w-full flex justify-between items-center py-4 px-4 lg:px-10 shadow-sm shadow-purple-light bg-purple z-10">
+    <h1 class="posterr-header__logo text-2xl lg:text-4xl font-extrabold text-white cursor-pointer" @click="goToFeed">Posterr</h1>
+    <span class="text-white text-sm lg:text-base">Hi, gqueiroz1</span>
   </header>
 </template>
 
