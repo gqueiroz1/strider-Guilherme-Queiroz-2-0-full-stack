@@ -68,7 +68,11 @@
     posts.value.push({
       id: 10,
       text: postText,
-      image: postImage
+      image: postImage || '',
+      creator: 'gqueiroz1',
+      repostedFrom: null,
+      reposts: 0,
+      createdAt: new Date().toLocaleDateString()
     })
   }
 </script>

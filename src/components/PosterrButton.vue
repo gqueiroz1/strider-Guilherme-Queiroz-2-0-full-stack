@@ -37,7 +37,6 @@
   })
 
   const classes = computed(() => {
-    console.log(props.textColor)
     return [
       `text-${props.textColor}`,
       `${!props.flat ? `bg-${props.bgColor}` : 'bg-transparent'}`,

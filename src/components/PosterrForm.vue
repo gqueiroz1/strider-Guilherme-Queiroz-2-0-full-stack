@@ -6,7 +6,12 @@
     </div>
     <span class="mt-2 text-xs sm:hidden inline-block" :class="remainingPostsLabelClasses">{{ remainingPostsLabel }}</span>
     <div class="flex justify-between items-center mt-3">
-      <PosterrButton v-if="isAbleToPost" label="Add image"/>
+      <PosterrButton v-if="isAbleToPost && !selectedImageName" label="Add image" @click="openImageInput"/>
+      <div v-if="selectedImageName" class="flex items-center">
+        <PosterrIcon name="remove" icon-size="16px" @click="removeSelectedImage" fill="red" class="pl-0 cursor-pointer"/> 
+        <span class="text-gray-600 text-sm truncate w-20 text-ellipsis">{{ selectedImageName }}</span>
+      </div>
+      <input type="file" ref="imageInput" class="hidden" @change="createSelectedImage">
       <div class="flex items-center">
         <span class="text-xs hidden sm:inline-block" :class="remainingPostsLabelClasses">{{ remainingPostsLabel }}</span>
         <div v-if="isAbleToPost" class="flex items-center">
@@ -21,6 +26,7 @@
 <script setup>
   import { ref, computed } from 'vue'
   import PosterrButton from './PosterrButton.vue';
+  import PosterrIcon from './PosterrIcon.vue';
 
   const props = defineProps({
     dailyPostsCount: {
@@ -34,8 +40,6 @@
   const charsLimit = 777
 
   const postText = ref('')
-
-  const imageURL = ref('https://th.bing.com/th/id/OIG.CO2sHWK_IEYIwzXsC2hX')
 
   const textareaCount = computed(() => postText.value.length)
 
@@ -53,6 +57,13 @@
 
   const isAbleToPost = computed(() => props.dailyPostsCount > 0)
 
+  // form actions
+  const imageInput = ref(null)
+
+  const selectedImageName = ref(null)
+
+  const imageB64 = ref('')
+
   function erasePost () {
     postText.value = ''
   }
@@ -60,6 +71,23 @@
   function createPost () {
     if (!postText.value) return
 
-    emit('createPost', { postText: postText.value, postImage: imageURL.value })
+    emit('createPost', { postText: postText.value, postImage: imageB64.value })
+  }
+
+  function openImageInput () {
+    imageInput.value.click()
+  }
+
+  function createSelectedImage (e) {
+    selectedImageName.value = e.target.files[0].name
+
+    const fileReader = new FileReader
+    fileReader.readAsDataURL(e.target.files[0])
+    fileReader.onload = ({ target }) => imageB64.value = target.result
+  }
+
+  function removeSelectedImage () {
+    selectedImageName.value = null
+    imageInput.value.value = null
   }
 </script>
