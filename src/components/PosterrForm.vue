@@ -41,8 +41,6 @@
 
   const postText = ref('')
 
-  const imageURL = ref('https://th.bing.com/th/id/OIG.CO2sHWK_IEYIwzXsC2hX')
-
   const textareaCount = computed(() => postText.value.length)
 
   const charsLengthClass = computed(() => textareaCount.value == charsLimit ? 'text-red-500' : 'text-gray-500')
@@ -64,6 +62,8 @@
 
   const selectedImageName = ref(null)
 
+  const imageB64 = ref('')
+
   function erasePost () {
     postText.value = ''
   }
@@ -71,7 +71,7 @@
   function createPost () {
     if (!postText.value) return
 
-    emit('createPost', { postText: postText.value, postImage: imageURL.value })
+    emit('createPost', { postText: postText.value, postImage: imageB64.value })
   }
 
   function openImageInput () {
@@ -79,8 +79,11 @@
   }
 
   function createSelectedImage (e) {
-    console.log(e.target.files[0])
     selectedImageName.value = e.target.files[0].name
+
+    const fileReader = new FileReader
+    fileReader.readAsDataURL(e.target.files[0])
+    fileReader.onload = ({ target }) => imageB64.value = target.result
   }
 
   function removeSelectedImage () {
