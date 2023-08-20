@@ -69,9 +69,11 @@
   }
 
   function createPost () {
-    if (!postText.value) return
+    if (!postText.value && !imageB64.value) return
 
     emit('createPost', { postText: postText.value, postImage: imageB64.value })
+    removeSelectedImage()
+    erasePost()
   }
 
   function openImageInput () {
@@ -89,5 +91,6 @@
   function removeSelectedImage () {
     selectedImageName.value = null
     imageInput.value.value = null
+    imageB64.value = ''
   }
 </script>
