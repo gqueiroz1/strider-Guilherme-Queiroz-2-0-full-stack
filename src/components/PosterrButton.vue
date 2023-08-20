@@ -1,5 +1,5 @@
 <template>
-  <button :class="classes" class="rounded-md">
+  <button :class="classes" class="rounded-md flex justify-center items-center">
     <PosterrIcon v-if="icon" class="cursor-pointer" :name="icon" :fill="iconColor" bg-color="white" icon-size="20px" />    
     {{ label }}
   </button>
