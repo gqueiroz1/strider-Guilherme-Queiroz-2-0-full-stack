@@ -1,6 +1,6 @@
 <template>
   <div class="p-4 bg-white shadow-md rounded-md">
-    <div class="flex justify-between items-center mb-3">
+    <div class="flex justify-between items-center mb-3 flex-wrap">
       <div>
         <span class="font-semibold text-sm">{{ post.creator }}</span>
         <span class="ml-4 text-xs text-gray-400">{{ post.createdAt }}</span>
