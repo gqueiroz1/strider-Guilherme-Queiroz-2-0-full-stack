@@ -10,7 +10,7 @@
     </div>
     <div>
       <div v-if="post.image" class="h-80 overflow-hidden relative">
-        <img :src="post.image" alt="image" class="rounded-md w-full h-80 object-cover">
+        <img :src="post.image" data-testid="postCardImage" alt="image" class="rounded-md w-full h-80 object-cover">
       </div>
       <p class="mt-4 text-gray-800 leading-5 text-sm">{{ post.text }}</p>
     </div>
