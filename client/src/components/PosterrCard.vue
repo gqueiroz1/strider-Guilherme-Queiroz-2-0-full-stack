@@ -40,6 +40,6 @@
     if (props.post.repostedFrom) return `Reposted from ${props.post.repostedFrom}`
 
     // if it is original and reposted by the user, then it shows [Original]
-    return '[Original]'
+    return `[Original] - Reposted ${props.post.numberOfReposts} times`
   })
 </script>
