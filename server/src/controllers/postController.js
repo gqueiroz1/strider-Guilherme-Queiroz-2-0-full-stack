@@ -15,7 +15,7 @@ const postController = {
 
       res.status(201).json({ post: createdPost.toJSON() })
     } catch (e) {
-      console.log(e.message)
+      res.status(500).send({ error: 'Couldn\'t create a post' })
     } 
   },
 
@@ -25,7 +25,7 @@ const postController = {
 
       res.status(200).json({ posts: postsList })
     } catch (e) {
-      console.log(e.message)
+      res.status(500).send({ error: 'Couldn\'t fetch posts' })
     } 
   },
 
@@ -41,13 +41,12 @@ const postController = {
       }
 
       await PostModel.create(post)
-      console.log('ID ->', req.body.id)
+      
       // update original post reposts quantity 
       await PostModel.findByIdAndUpdate(req.body.id, { reposts: +req.body.reposts + 1 })
     } catch (e) {
-      console.log(e)
+      res.status(500).send({ error: 'Couldn\'t repost' })
     }
-
 
     res.status(201).json({ result: true })
   }
