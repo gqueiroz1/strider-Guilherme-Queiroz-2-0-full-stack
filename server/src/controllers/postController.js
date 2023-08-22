@@ -28,7 +28,6 @@ const postController = {
 
   // get?sort='trending' if filtered by Trending
   get: async (req, res) => {
-    console.log(req.query)
     const sort = req.query?.sort === 'trending' ? 'numberOfReposts' : 'createdAt'
     const findFilter = req.query?.text ? { text: req.query?.text } : {} 
 
@@ -59,7 +58,6 @@ const postController = {
         reposts: [...req.body.reposts, req.body.creator],
         numberOfReposts: +req.body.numberOfReposts + 1 || 1 
       })
-      console.log('req ->', req.body)
       
       // finds the user by post.creator
       const user = await UserModel.findOne({ userName: post.creator })

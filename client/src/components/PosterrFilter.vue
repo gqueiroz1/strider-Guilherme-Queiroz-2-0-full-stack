@@ -24,8 +24,6 @@
   function filter () {
     const query = `${textFilter.value ? `text=${textFilter.value}&` : ''}sort=${selectedOption.value}`
 
-    console.log(textFilter.value, query)
-
     storePosts.fetchPosts(query)
   }
 </script>

@@ -7,7 +7,6 @@ const userController = {
 
     try {
       const response = await UserModel.find({ userName })
-      console.log(response)
 
       if (postLimit - response[0].currentPostingCount > 0) {
         res.status(200).json({ 

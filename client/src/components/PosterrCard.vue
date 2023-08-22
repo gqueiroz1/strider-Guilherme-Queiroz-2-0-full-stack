@@ -31,7 +31,7 @@
     }
   })
 
-  const userHaveAlreadyReposted = computed(() => props.post.reposts.includes('gqueiroz1'))
+  const userHaveAlreadyReposted = computed(() => props.post.reposts.includes(storeUsers.$state.defaultUser))
 
   const isRepost = computed(() => !!props.post.repostedFrom || userHaveAlreadyReposted.value)
 
