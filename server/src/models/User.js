@@ -6,6 +6,18 @@ const userSchema = new Schema({
   userName: {
     type: String,
     required: true
+  },
+  currentPostingCount: {
+    type: Number,
+    default: 0
+  },
+  lastPostingDate: {
+    type: Date,
+    default: Date.now()
+  },
+  allowedToPost: {
+    type: Boolean,
+    default: true
   }
 })
 

@@ -5,10 +5,10 @@ const { Schema } = mongoose
 const postSchema = new Schema(
   {
     text: { type: String, required: true },
-    image: { type: String },
     creator: { type: String, required: true },
     repostedFrom: { type: String },
-    reposts: { type: Number, default: 0 }
+    reposts: { type: Array, default: [] },
+    numberOfReposts: { type: Number, default: 0 }
   },
   { timestamps: true }
 )
