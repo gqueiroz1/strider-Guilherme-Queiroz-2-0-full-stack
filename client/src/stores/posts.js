@@ -20,7 +20,7 @@ export const usePostsStore = defineStore("posts", {
     async createPost (payload) {
       const { data: { post } } = await api.post('/posts', {
         text: payload.text,
-        creator: "gqueiroz1"
+        creator: storeUsers.$state.defaultUser
       })
 
       this.posts.unshift(post)
@@ -30,7 +30,9 @@ export const usePostsStore = defineStore("posts", {
 
     async repost (payload) {
       const { result, data: { post } } = await api.post('/posts/repost', { 
-        ...payload, repostedFrom: payload.creator 
+        ...payload, 
+        repostedFrom: payload.creator, 
+        creator: storeUsers.$state.defaultUser 
       })
 
       const index = this.posts.findIndex(({ _id }) => _id === payload._id)
