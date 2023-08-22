@@ -1,9 +1,13 @@
 <template>
-  <button :class="classes" class="rounded-md">{{ label }}</button>
+  <button :class="classes" data-testid="posterr-button" class="rounded-md flex justify-center items-center">
+    <PosterrIcon v-if="icon" class="cursor-pointer" :name="icon" :fill="iconColor" bg-color="white" icon-size="20px" />    
+    {{ label }}
+  </button>
 </template>
 
 <script setup>
   import { computed, defineProps } from 'vue';
+  import PosterrIcon from './PosterrIcon.vue';
 
   const props = defineProps({
     label: {
@@ -23,11 +27,16 @@
     },
     dense: {
       type: Boolean
+    },
+    icon: {
+      type: String
+    },
+    iconColor: {
+      type: String
     }
   })
 
   const classes = computed(() => {
-    console.log(props.textColor)
     return [
       `text-${props.textColor}`,
       `${!props.flat ? `bg-${props.bgColor}` : 'bg-transparent'}`,

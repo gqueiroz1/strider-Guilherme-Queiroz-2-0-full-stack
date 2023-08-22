@@ -16,6 +16,9 @@ module.exports = {
   },
   safelist: [
     {
+      pattern: /fill-(purple|purple|white|gray)-(100|200|300|400|500|600|700|800|900)/,
+    },
+    {
       pattern: /text-(red|purple|white|gray)-(100|200|300|400|500|600|700|800|900)/,
     },
     {
