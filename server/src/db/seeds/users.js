@@ -2,10 +2,30 @@ const connect = require('../connection')
 const { UserModel } = require('../../models/User')
 
 const users = [
-  { userName: 'gqueiroz1' },
-  { userName: 'mikec091' },
-  { userName: 'adalovelace'},
-  { userName: 'johndoe' }
+  { 
+    userName: 'gqueiroz1',
+    currentPostingCount: 0,
+    lastPostingDate: null,
+    allowedToPost: true
+  },
+  { 
+    userName: 'mikec091',
+    currentPostingCount: 0,
+    lastPostingDate: null,
+    allowedToPost: true
+  },
+  { 
+    userName: 'adalovelace',
+    currentPostingCount: 0,
+    lastPostingDate: null,
+    allowedToPost: true
+  },
+  { 
+    userName: 'johndoe',
+    currentPostingCount: 0,
+    lastPostingDate: null,
+    allowedToPost: true
+  }
 ]
 
 
