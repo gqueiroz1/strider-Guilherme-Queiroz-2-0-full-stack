@@ -29,12 +29,6 @@ export const usePostsStore = defineStore("posts", {
     },
 
     async repost (payload) {
-      console.log({ 
-        ...payload, 
-        repostedFrom: payload.creator, 
-        creator: storeUsers.$state.defaultUser 
-      })
-
       const { result, data: { post } } = await api.post('/posts/repost', { 
         ...payload, 
         repostedFrom: payload.creator, 
