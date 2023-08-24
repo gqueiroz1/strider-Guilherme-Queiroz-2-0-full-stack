@@ -1,6 +1,6 @@
 <template>
   <Transition>
-    <div v-if="isSnackbarOpen" ref="snackbar" class="p-4 rounded-md fixed bottom-5 right-5 z-20 text-white font-normal" :class="classes">
+    <div v-if="isSnackbarOpen" ref="snackbar" class="p-4 rounded-md fixed bottom-5 translate-x-2.5 right-5 z-20 text-white font-normal" :class="classes">
       {{message}}
     </div>
   </Transition>

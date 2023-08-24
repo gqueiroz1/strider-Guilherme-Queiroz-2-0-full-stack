@@ -1,6 +1,6 @@
 <template>
-  <div v-if="modelValue" @click.self="closeModal" class="fixed flex justify-center items-center z-20 top-0 left-0 w-full h-screen bg-opacity-30 bg-black">
-    <div class="p-10 bg-white rounded-md">
+  <div v-if="modelValue" @click.self="closeModal" class="fixed flex justify-center items-center z-20 top-0 left-0 w-full h-screen bg-opacity-30 bg-black px-5">
+    <div class="p-5 sm:p-10 bg-white rounded-md">
       <slot name="title">
         <h2 class="text-xl mb-3">{{ title }}</h2>
       </slot>
