@@ -17,8 +17,11 @@ const postController = {
       const user = await UserModel.findOne({ userName: post.creator })
       await UserModel.findOneAndUpdate(
         { userName: user.userName }, 
-        { currentPostingCount: user.currentPostingCount + 1 
-      })
+        { 
+          currentPostingCount: user.currentPostingCount + 1, 
+          lastPostingDate: createdPost.createdAt
+        }
+      )
       
       res.status(201).json({ post: createdPost.toJSON() })
     } catch (e) {

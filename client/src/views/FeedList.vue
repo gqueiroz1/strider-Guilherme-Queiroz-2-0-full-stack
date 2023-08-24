@@ -4,9 +4,11 @@
   <div class="mt-10">
     <PosterrFilter />
     <div class="mt-10">
-      <div v-for="post in storePosts.getPosts" :key="post._id" class="mt-10">
-        <PosterrCard :post="post"/>
-      </div>
+      <TransitionGroup>
+        <div v-for="post in storePosts.getPosts" :key="post._id" class="mt-10">
+          <PosterrCard :post="post"/>
+        </div>
+      </TransitionGroup>
     </div>
   </div>
 </template>

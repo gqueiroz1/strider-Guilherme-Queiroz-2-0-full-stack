@@ -5,22 +5,27 @@
       <span class="absolute right-2 bottom-2 text-[10px]" :class="charsLengthClass">{{ textareaCount }}/{{ charsLimit }}</span>
     </div>
     <span class="mt-2 text-xs sm:hidden inline-block" :class="remainingPostsLabelClasses">{{ remainingPostsLabel }}</span>
-      <div class="flex items-center justify-between mt-3">
-        <span class="text-xs hidden sm:inline-block" :class="remainingPostsLabelClasses">{{ remainingPostsLabel }}</span>
-        <div v-if="isAbleToPost" class="flex items-center">
-          <PosterrButton id="reset" label="Reset" flat text-color="gray-500" class="mr-2" @click="erasePost"/>
-          <PosterrButton label="Post" @click="createPost"/> 
-        </div>
+    <div class="flex items-center justify-between mt-3">
+      <span class="text-xs hidden sm:inline-block" :class="remainingPostsLabelClasses">{{ remainingPostsLabel }}</span>
+      <div v-if="isAbleToPost" class="flex items-center">
+        <PosterrButton id="reset" label="Reset" flat text-color="gray-500" class="mr-2" @click="erasePost"/>
+        <PosterrButton label="Post" @click="createPost"/> 
       </div>
     </div>
+  </div>
+
+  <PosterrSnackbar ref="postSnackbar" />
 </template>
 
 <script setup>
   import { ref, computed } from 'vue'
   import { usePostsStore } from '../stores/posts';
+  import { useUsersStore } from '../stores/users';
   import PosterrButton from './PosterrButton.vue';
+  import PosterrSnackbar from './PosterrSnackbar.vue';
 
   const storePosts = usePostsStore()
+  const storeUsers = useUsersStore()
 
   const props = defineProps({
     dailyPostsCount: {
@@ -47,17 +52,30 @@
 
   const remainingPostsLabelClasses = computed(() => isAbleToPost.value ? 'text-gray-500 mr-5' : 'text-red-500')
 
-  const isAbleToPost = computed(() => props.dailyPostsCount > 0)
+  /**
+   * user can post only 5 times a day
+   * so the idea is to get the fifth post time and lock the account
+   * the account should unlock at 00:00 on the next day
+   * so -> lockDate = 2023/08/20 / unlocks at 2023/08/21 at 00:00
+   */
+  const isAbleToPost = computed(() => storeUsers.$state.allowedToPost)
 
   // form actions
   function erasePost () {
     postText.value = ''
   }
 
-  function createPost () {
+  const postSnackbar = ref(null)
+
+  async function createPost () {
     if (!postText.value) return
 
-    storePosts.createPost({ text: postText.value })
-    erasePost()
+    try {
+      await storePosts.createPost({ text: postText.value })
+      postSnackbar.value.create(`Awesome! Your post's been created :)`, 'success')
+      erasePost()
+    } catch (e) {
+      postSnackbar.value.create(`Oops! No posts created :/`, 'error')
+    }
   }
 </script>
