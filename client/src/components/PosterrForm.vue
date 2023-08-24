@@ -7,9 +7,9 @@
     <span class="mt-2 text-xs sm:hidden inline-block" :class="remainingPostsLabelClasses">{{ remainingPostsLabel }}</span>
     <div class="flex items-center justify-between mt-3">
       <span class="text-xs hidden sm:inline-block" :class="remainingPostsLabelClasses">{{ remainingPostsLabel }}</span>
-      <div v-if="isAbleToPost" class="flex items-center">
-        <PosterrButton id="reset" label="Reset" flat text-color="gray-500" class="mr-2" @click="erasePost"/>
-        <PosterrButton label="Post" @click="createPost"/> 
+      <div v-if="isAbleToPost" class="flex items-center w-full sm:w-auto">
+        <PosterrButton id="reset" label="Reset" flat text-color="gray-500" class="mr-2 grow sm:grow-0" @click="erasePost"/>
+        <PosterrButton label="Post" @click="createPost" class="grow sm:grow-0"/> 
       </div>
     </div>
   </div>
