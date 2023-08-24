@@ -14,6 +14,7 @@ export const useUsersStore = defineStore("users", {
   actions: {
     async validateUserCanPost () {
       const { data } = await api.get(`/users/can-post/${this.defaultUser}`)
+      console.log(data)
       this.postsLeft = data.postsLeft
       this.allowedToPost = data.allowedToPost
     }

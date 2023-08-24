@@ -18,9 +18,11 @@
 <script setup>
   import { ref, computed } from 'vue'
   import { usePostsStore } from '../stores/posts';
+  import { useUsersStore } from '../stores/users';
   import PosterrButton from './PosterrButton.vue';
 
   const storePosts = usePostsStore()
+  const storeUsers = useUsersStore()
 
   const props = defineProps({
     dailyPostsCount: {
@@ -47,7 +49,13 @@
 
   const remainingPostsLabelClasses = computed(() => isAbleToPost.value ? 'text-gray-500 mr-5' : 'text-red-500')
 
-  const isAbleToPost = computed(() => props.dailyPostsCount > 0)
+  /**
+   * user can post only 5 times a day
+   * so the idea is to get the fifth post time and lock the account
+   * the account should unlock at 00:00 on the next day
+   * so -> lockDate = 2023/08/20 / unlocks at 2023/08/21 at 00:00
+   */
+  const isAbleToPost = computed(() => storeUsers.$state.allowedToPost)
 
   // form actions
   function erasePost () {
