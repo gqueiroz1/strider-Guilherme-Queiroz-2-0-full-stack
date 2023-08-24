@@ -14,6 +14,7 @@
   </div>
 
   <PosterrModal v-model="isRepostModalOpen" title="You're about to repost..." :subtitle="modalSubtitle" :on-continue="repost" />
+  <PosterrSnackbar ref="repostSnackbar"/>
 </template>
 
 <script setup>
@@ -23,6 +24,7 @@
   import { useUsersStore } from '../stores/users';
   import PosterrButton from './PosterrButton.vue'
   import PosterrModal from './PosterrModal.vue'
+  import PosterrSnackbar from './PosterrSnackbar.vue';
   
   const storePosts = usePostsStore()
   const storeUsers = useUsersStore()
@@ -48,14 +50,22 @@
 
   const isRepostModalOpen = ref(false)
 
+  const repostSnackbar = ref(null)
+
   function openRepostModal () {
     isRepostModalOpen.value = true
   }
 
   async function repost () {
-    await storePosts.repost(props.post)
+    try {
+      await storePosts.repost(props.post)
 
-    isRepostModalOpen.value = false
+      repostSnackbar.value.create(`Awesome! Your post's been created :)`, 'success')
+    } catch (e) {
+      repostSnackbar.value.create(`Oops! No posts created :/`, 'error')
+    } finally {
+      isRepostModalOpen.value = false
+    }
   }
 
   const modalSubtitle = computed(() => `Should we repost ${props.post.creator}'s post?`)
